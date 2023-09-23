@@ -1,0 +1,147 @@
+
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+* {
+  box-sizing: border-box;
+}
+
+
+body{
+	
+	background-color:#84588fd6;
+	 
+	font-size: 16px;
+	position: relative;
+}
+.dataForm {
+  background-color: #ffffff;
+  margin: 100px auto;
+  font-family: Raleway;
+  padding: 40px;
+  width: 70%;
+  min-width: 300px;
+  box-shadow: 0px 6px 18px rgb(9 7 80 / 85%);
+  border-radius: 12px;
+}
+
+.banner {
+    background-color: #ece7f5;
+	text-align: center;
+	 box-shadow: 0px 6px 18px rgb(9 7 80 / 85%);
+}
+
+
+
+element.style {
+}
+.justify-content-center {
+    -webkit-box-pack: center!important;
+    -ms-flex-pack: center!important;
+    justify-content: center!important;
+}
+.d-flex {
+   
+    display: flex!important;
+}
+
+h1 {
+  text-align: center;  
+}
+
+input {
+  padding: 10px;
+  width: 100%;
+  font-size: 17px;
+  font-family: Raleway;
+  border: 1px solid #aaaaaa;
+}
+
+/* Mark input boxes that gets an error on validation: */
+.invalid {
+  background-color: #ffdddd;
+}
+
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+}
+
+button {
+  background-color:#6b59d3; /* #04AA6D; */
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-family: Raleway;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+#prevBtn {
+  background-color: #bbbbbb;
+}
+.next-prev{
+margin-top:15px;
+}
+/* --bs-gutter-x: 1rem;
+--bs-gutter-y: 1rem; */
+.col-md-6
+{
+	    padding-right: 8px; /* calc(var(--bs-gutter-x) * .5); */
+    padding-left: 8px;/* calc(var(--bs-gutter-x) * .5); */
+    margin-top: 16px;/* var(--bs-gutter-y); */
+}
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 40px;
+  width: 40px;
+  margin: 0 2px;
+  background-color:#6b59d3; /* #bbbbbb; */
+  border: none;  
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+  color:white;
+  text-align:center;
+  padding-top: 5px;
+  }
+
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #04AA6D;
+}
+
+.blockquote {
+    font-size: 1.25rem;
+}
+.blockquote, hr {
+    margin-bottom: 1rem;
+}
+
+.blockquote {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+blockquote, figure {
+    margin: 0 0 1rem;
+}
+blockquote {
+    margin: 0 0 1rem;
+}
+
+
+blockquote {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+}
