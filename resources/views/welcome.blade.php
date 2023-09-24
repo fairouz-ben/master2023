@@ -107,19 +107,19 @@
          <img src="{{asset('islamic_fr.png')}}" class="bd-placeholder-img rounded-circle img-fluid"  width="200" height="200" alt="fac SI">
         <h2>كلية العلوم الإسلامية</h2>
         <p>Faculté Sciences Islamique</p>
-        <p><a class="btn btn-secondary" href="{{ url('create_account/is') }}"> {{__('translation.Inscription')}} &raquo; </a></p>
+        {{-- <p><a class="btn btn-secondary" href="{{ url('create_account/is') }}"> {{__('translation.Inscription')}} &raquo; </a></p> --}}
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
         <img src="{{asset('droit_fr.png')}}" class="bd-placeholder-img rounded-circle img-fluid"  width="200" height="200" alt="fac SI">
        <h2>كلية الحقوق</h2>
        <p>Faculté de Droit</p>
-       <p><a class="btn btn-secondary" href="{{ url('create_account/droit') }}"> {{__('translation.Inscription')}} &raquo;</a></p>
+       {{-- <p><a class="btn btn-secondary" href="{{ url('create_account/droit') }}"> {{__('translation.Inscription')}} &raquo;</a></p> --}}
      </div><!-- /.col-lg-4 -->
      <div class="col-lg-4">
       <img src="{{asset('sciences_fr.png')}}" class="bd-placeholder-img rounded-circle img-fluid"  width="200" height="200" alt="fac SI">
      <h2>كلية العلوم</h2>
      <p>Faculté  des Sciences </p>
-     <p><a class="btn btn-secondary" href="{{ url('create_account/sciences') }}"> {{__('translation.Inscription')}} &raquo;</a></p>
+     {{-- <p><a class="btn btn-secondary" href="{{ url('create_account/sciences') }}"> {{__('translation.Inscription')}} &raquo;</a></p> --}}
    </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
         <!-- Three columns of text below the carousel -->

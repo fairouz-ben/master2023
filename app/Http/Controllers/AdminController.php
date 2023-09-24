@@ -28,31 +28,7 @@ class AdminController extends Controller
         return view('admin.admin');
 
     }
-   
 
-    /****** Start of crud test******************************************
-    public function index_2(Request $request)
-    {
-        if ($request->ajax()) {
-            $data = Student::select('*')->get();
-            return Datatables::of($data)->addIndexColumn()
-                ->addColumn('action', function($data){
-                    $button = '<button type="button" name="edit" id="'.$data->id.'" class="edit btn btn-primary btn-sm"> <i class="bi bi-pencil-square"></i>Edit</button>';
-                    $button .= '   <button type="button" name="edit" id="'.$data->id.'" class="delete btn btn-danger btn-sm"> <i class="bi bi-backspace-reverse-fill"></i> Delete</button>';
-                    return $button;
-                })
-                ->make(true);
-        }
-        return view('admin.students.index_yajaT');
-    }
-   *****************************************************/
-    /**
-    * Show the form for editing the specified resource.
-    */
-    public function edit(Student $student)
-    {
-        return view('admin.students.edit',compact('student'));
-    }
     /**
     * Update the specified resource in storage.
     
@@ -105,69 +81,9 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function anyData($id = null)
-    {
-        $id=1;
-        if ($id != null && $id == Auth::user()->faculty_id)
-        {
-            $faculty=  Faculty::find($id);
-            if( $faculty)
-            {
-                if ($faculty->is_active)
-                {
-                //when the time for inscription is still open;
-                $etud = Student::where(['faculty_id'=>$faculty->id])->with('department')->get();
+  
 
-                
-                //return DataTables::of(Student::where(['faculty_id'=>$faculty->id])->with('department'))->make(true);
-               
-                
-                return view('admin.students.index')->with(['students'=>$etud,'fac'=>$faculty]);
-
-                }
-                else
-                {
-                        flash('the faculty is colsed','error');
-                        return back();
-                }
-            }
-              //when fac  is closed you must redirct to welcome page
-            flash('Data error: ','error');
-            return back();
-        }
-       //when no fac , must redirct to welcome page
-        return back();
-    }
-
-
-    public function list_students($id)
-    {
-        if ($id != null && $id == Auth::user()->faculty_id)
-        {
-            $faculty=  Faculty::find($id);
-            if( $faculty)
-            {
-                if ($faculty->is_active)
-                {
-                //when the time for inscription is still open;
-                $etud = Student::where(['faculty_id'=>$faculty->id])->get();
-
-                return view('admin.students.index')->with(['students'=>$etud,'fac'=>$faculty]);
-
-                }
-                else
-                {
-                        flash('the faculty is colsed','error');
-                        return back();
-                }
-            }
-              //when fac  is closed you must redirct to welcome page
-            flash('Data error: ','error');
-            return back();
-        }
-       //when no fac , must redirct to welcome page
-        return back();
-    }
+   
     public function generatePDF()
     {
 
@@ -187,9 +103,26 @@ class AdminController extends Controller
         return $pdf->download('___List_etudiants.pdf');
     }
 
-    public function list_student(StudentsDataTable $dataTable)
+    public function list_student(Request $request =null, StudentsDataTable $dataTable)
     {
-        $departments= Department::all();
+        $selectedDeparts =  Auth::guard('admin')->user()->faculty->departments()->get();
+        $departments= Department:: where('is_active','1')->get();
+        $list=[];
+        if($selectedDeparts){
+            //$idList = $selectedDeparts->pluck('id');
+            
+            
+            foreach ($selectedDeparts as $dep)
+            {
+            $list[] = $dep->id;
+            }
+        }
+        $dataTable->setDepIds($list);
+
+        if(  ($request->input('dep_id')!== NULL) ) {
+                
+            $dataTable->setDepIds([$request->input('dep_id')]); 
+        }
         return $dataTable->render('admin.students.index_yaj',['departments'=>$departments]); 
     }
 
@@ -220,11 +153,4 @@ class AdminController extends Controller
         }
     }
 
-    public function student_details(Student $student)
-    {
-        if( $student)
-        { //student_details
-            return view('admin.students.edit')->with(['student'=>$student]);
-        }
-    }
 }

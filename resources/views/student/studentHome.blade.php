@@ -17,11 +17,11 @@
                    
                     <h5>  {{ __('translation.student') }}: {{$student->nom_ar}}{{$student->prenom_ar}}  </h5>
                     <p> 
-                        {{-- <a href="{{asset($student->file_path)}}"></a> --}}
+                       
                       <br/>  <a href="{{ route('show_uploaded_file') }}" target="_blank" > {{ __('translation.note_file_check') }} </a>
                    
                     </p>
-                    @include('student.edit_file')
+                    {{-- @include('student.edit_file') --}}
                     <div class="row mt-3">
                         <div class="col-12 text-center">
                             <a href="{{ route('print') }}"  target="_blank" class="btn btn-success btn-sm ml-auto"><i class="fa fa-print"></i> {{ __('translation.print') }}</a>

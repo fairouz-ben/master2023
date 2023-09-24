@@ -164,9 +164,8 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
        
-       // return back()->with('success','Item created successfully!');
        return  $user;
-       //return redirect()->route('student');
+   
        
     }
 

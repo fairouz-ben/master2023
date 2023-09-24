@@ -4,11 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.84.0">
-    <title>Dashboard Template · Bootstrap v5.0</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
+    <meta name="author" content="master">
+    <meta name="generator" content="Master">
+    <title>Dashboard </title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
  
@@ -124,27 +122,7 @@
           }
       });
 
-    /*  $('#users-table').on('click', '.delete', function() {
-          if (confirm("définir l'e-mail comme vérifié?") == true) {
-              var id = $(this).data('id');
-              // ajax
-              $.ajax({
-                  type: "POST",
-                  url: "{{ url('users/user_disable') }}",
-                  data: {
-                      id: id,
-                      _token: '{!! csrf_token() !!}'
-                  },
-                  dataType: 'json',
-                  success: function(res) {
-                      var oTable = $('#users-table').dataTable();
-                      oTable.fnDraw(false);
-
-                  }
-
-              });
-          }
-      });*/
+  
 
 
   });

@@ -14,22 +14,22 @@
             <form id="filter-form" class="form-group">
                 @csrf
                  
-                @if(Auth::user()->role_id==='1')
+             
                     <div class="row  p-3">
                         <label for="dep_id" class="col-sm-2 form-label">La liste est pour</label>
                         <div class="col-sm-4">
                         <select  name="dep_id"  onchange="applyFilter()"  id="dep_id" class="form-select">
-                            <option value="">tout</option>   
-                            @if(Auth::user()->hasPermission('student@list-All'))
+                            <option value="">---</option>   
+                            @if(Auth::guard('admin')->user()->role_id =='1')
                             @foreach ($departments as $dep )
                                 
-                            <option value="{{$dep->id}}">{{$dep->name_ar}}</option> 
+                            <option value="{{$dep->id}}">{{$dep->name_fr}}</option> 
                                 
                             @endforeach 
                         @else
-                            @foreach (Auth::user()->faculty->departments() as $dep )
+                            @foreach ( Auth::guard('admin')->user()->faculty->departments()->get() as $dep )
                                 
-                            <option value="{{$dep->id}}">{{$dep->name_ar}}</option> 
+                            <option value="{{$dep->id}}">{{$dep->name_fr}}</option> 
                                 
                             @endforeach 
                         @endif
@@ -37,7 +37,7 @@
                         </select>
                         </div>
                     </div>
-                    @endif
+                  
                     
                 {{-- <button type="submit" class="btn btn-primary">Apply Filter</button>  --}}
             </form>
@@ -47,7 +47,7 @@
     
     <div class="card-body">
     
-                    <div class="table-responsive">
+                    <div class="table-responsive" style="width: 95%">
                         
                         {{ $dataTable->table() }}
                     </div>
@@ -60,9 +60,31 @@
 @endsection
 @push('scripts')
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
-
+    <script>
+        function applyFilter() {
+            var dep_id = $('#dep_id').val();
+            
+            if (dep_id == null)
+            window.location.href =  "{{ route('students') }}" ;
+        else
+            window.location.href =  "{{ route('students') }}?dep_id=" + `${dep_id}`;
+            
+        }
+    </script>
     <script type="text/javascript">
         $(document).ready(function() {
+
+            let searchParams = new URLSearchParams(window.location.search)
+       if ( searchParams.has('dep_id'))
+       {
+        let param = searchParams.get('dep_id')
+        //console.log(param )
+        $("#dep_id option[value='"+ param +"']").attr("selected", "selected");
+       
+        //Last, if you have multiple entries for the same parameter (like ?id=1&id=2), you can use
+        //let param = searchParams.getAll('id')
+   
+       }
         /*$.ajaxSetup({
             headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

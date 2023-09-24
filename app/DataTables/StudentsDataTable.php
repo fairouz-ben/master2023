@@ -13,12 +13,12 @@ use Yajra\DataTables\Services\DataTable;
 
 class StudentsDataTable extends  DataTable
 {
-    /**
-     * Build DataTable class.
-     *
-     * @param QueryBuilder $query Results from query() method.
-     * @return \Yajra\DataTables\EloquentDataTable
-     */
+    private $DepIds=[];
+
+    public function setDepIds($user_dep_Id)
+    {
+        $this->DepIds = $user_dep_Id;
+    }
 
      /////////////////////////////////first//////////////////////////////////
     public function dataTable(QueryBuilder $query): EloquentDataTable
@@ -35,6 +35,19 @@ class StudentsDataTable extends  DataTable
             ->editColumn("nom_ar",function($student){
         
                 return view("admin.students.fullName")->with("student",$student);
+            })
+            ->editColumn('department_id',function ($student){
+                return ($student->department->name_fr);
+            })
+            
+            ->editColumn('special_1',function ($student){
+                $iteration = 1; 
+                $sp_list=[];
+                 foreach($student->speciality_students as $sp){
+                    $sp_list []= $iteration++ .': '.$sp->speciality->title_fr.' ('.$sp->speciality->id.') / ';
+                    
+                }
+                return $sp_list;
             })
         ->rawColumns(['link', 'action'])    
                 
@@ -56,8 +69,8 @@ class StudentsDataTable extends  DataTable
     protected function getActionColumn($data): string
     {
         
-        $editUrl = route('student_edit', $data->id);
-        $detailstUrl = route('student_details', $data->id);
+        
+        $detailstUrl = route('select.student',['user'=>$data->user_id]) ;
         if (  $data->is_deleted  == 1 ){
         $dt="<a href='javascript:void(0)'  data-id=' $data->id' data-toggle='tooltip' data-original-title='Active' class='active btn btn-info'>
             <i class='fa fa fa-eye' ></i></a>
@@ -81,7 +94,14 @@ class StudentsDataTable extends  DataTable
      */
     public function query(Student $model): QueryBuilder
     {
-        return $model->newQuery();
+      
+        $query = $model->newQuery();
+        if ($this->DepIds) {
+            $query->whereIn('department_id', $this->DepIds );
+                
+        }
+      
+        return $query;
     }
 
     /**
@@ -93,6 +113,7 @@ class StudentsDataTable extends  DataTable
     {
         return $this->builder()
                     ->setTableId('students-table')
+                    
                     ->columns($this->getColumns())
                     ->lengthMenu(['10', '25', '50', '100','200'], [10, 25, 50, 100,200])
                     ->responsive(true)
@@ -129,25 +150,27 @@ class StudentsDataTable extends  DataTable
         
         return [ 
             Column::make('id')->hidden()->printable(false)->searchable(false)->exportable(false),         
-            Column::make('nom_ar')->title( 'Nom' ),
-            Column::make('prenom_ar'),
+          //  Column::make('nom_ar')->title( 'Nom' )->searchable(true),
+           // Column::make('prenom_ar'),
             Column::make('nom_fr'),
             Column::make('prenom_fr'),
-            
+            Column::make('department_id')->title( 'Department' )->searchable(true),
+            Column::make('special_1')->title( 'Spécialités' )->searchable(true),
+            Column::make('moy_classement')->title( 'moyenne de classement' )->searchable(true),
            // Column::make('phone'),
            // Column::make('mat_bac'),
             Column::computed('link')
             ->exportable(true)
             ->printable(false)
-            ->width(60)->delete()
+            ->width(80)->delete()
             ->addClass('text-center'),
 
-            Column::make('etat'),
+            Column::make('etat')->width(80),
 
             Column::computed('action')
             ->exportable(true)
             ->printable(false)
-            ->width(60)->delete()
+            ->width(80)->delete()
             ->addClass('text-center'),
         ];
     }

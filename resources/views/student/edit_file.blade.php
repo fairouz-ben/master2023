@@ -10,7 +10,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form action="{{ route('storefile',['student'=>$student->id]) }}" method="post" enctype="multipart/form-data">{{-- need to use route to easy insert parameter department_id--}}
+            <form action="{{ route('admin.storefile',['student'=>$student->id]) }}" method="post" enctype="multipart/form-data">{{-- need to use route to easy insert parameter department_id--}}
                 @csrf
                
                 <div class="form-group g-4">

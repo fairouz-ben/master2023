@@ -14,12 +14,7 @@
         </a>
        
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{url('/students/1')}}">
-          <span data-feather="users"></span>
-          Etudients Droit
-        </a>
-      </li>
+     
      
       <li class="nav-item">
         <a class="nav-link" href="#">
