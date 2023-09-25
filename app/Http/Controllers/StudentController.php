@@ -346,9 +346,14 @@ class StudentController extends Controller
 
     }
 
-    function calculeClassementLMD() {
+    public function calculeClassementLMD() {
 
-        $students= Student::where('licence_type','LMD')->get();
+        $students= Student::where(['licence_type'=>'LMD'])
+        ->where('S4','>',0)
+        ->where('S5','>',0)
+        ->where('S6','>',0)
+        ->get();
+        $i=0;
         foreach($students as $etu){
          $s1= $etu->S1;    $s2= $etu->S2;  $s3= $etu->S3;  $s4= $etu->S4;  $s5= $etu->S5;  $s6= $etu->S6; 
          $red= $etu->annee_doublon; $d= $etu->nb_dette; $s= $etu->nb_rattrapage;
@@ -369,12 +374,82 @@ class StudentController extends Controller
             $moys = (($s1 + $s2 + $s3 + $s4 + $s5 + $s6) / 6);
             $moy = ($moys * (1 - (0.04 * ($red + ($d / 2) + ($s / 4)))));
             $moy = number_format($moy, 2, '.', ''); // Format to two decimal places
+           
             $etu->moy_classement= $moy;
+           
             $etu->save();
+            $i++;
         } else {
-            echo "Veuillez saisir toutes les données <br/>";
+            return "Veuillez saisir toutes les données <br/>";
         }
     }
+    return ($i.' : all is done');
+    }
+
+    public function calculeClassementClassique() {
+
+        $students= Student::where(['licence_type'=>'Classique'])->get();
+        $i=0;
+        foreach($students as $etu){
+         $s1= $etu->S1;    $s2= $etu->S2;  $s3= $etu->S3;  $s4= $etu->S4;
+         $red= $etu->annee_doublon; $d= $etu->nb_dette; $s= $etu->nb_rattrapage;
+       
+        $s1 = floatval($s1);
+        $s2 = floatval($s2);
+        $s3 = floatval($s3);
+        $s4 = floatval($s4);
+        $red = intval($red);
+        $s = intval($s);
+        $moy = 0;
+        $moys = 0;
+    
+        if (($s1 > 0 && $s2 > 0 && $s3 > 0 && $s4 > 0) && ($s1 < 20 && $s2 < 20 && $s3 < 20 && $s4 < 20)) {
+            $moys = (($s1 + $s2 + $s3 + $s4) / 4);
+            $moy = ($moys * (1 - (0.04 * ($red + ($s / 4)))));
+            $moy = number_format($moy, 2, '.', ''); // Format to two decimal places
+            $etu->moy_classement= $moy;
+           
+            $etu->save();
+            $i++;
+        } else {
+            return "Veuillez saisir toutes les données <br/>";
+        }
+    }
+    return ($i.' : all is done');
+    }
+    
+    
+    public function calculeClassementIngenieur() {
+
+        $students= Student::where(['licence_type'=>'ingenieur'])->where('S5','>',0)->get();
+        $i=0;
+        foreach($students as $etu){
+         $s1= $etu->S1;    $s2= $etu->S2;  $s3= $etu->S3;  $s4= $etu->S4; $s5= $etu->S5;
+         $red= $etu->annee_doublon; $d= $etu->nb_dette; $s= $etu->nb_rattrapage;
+       
+        $s1 = floatval($s1);
+        $s2 = floatval($s2);
+        $s3 = floatval($s3);
+        $s4 = floatval($s4);
+        $s5 = floatval($s5);
+        $red = intval($red);
+        $s = intval($s);
+        $moy = 0;
+        $moys = 0;
+    
+        if (($s1 > 0 && $s2 > 0 && $s3 > 0 && $s4 > 0 && $s5>0) && ($s1 < 20 && $s2 < 20 && $s3 < 20 && $s4 < 20)) {
+            $moys = (($s1 + $s2 + $s3 + $s4 +$s5) / 5);
+            $moy = ($moys * (1 - (0.04 * ($red + ($s / 4)))));
+            $moy = number_format($moy, 2, '.', ''); // Format to two decimal places
+            $etu->moy_classement= $moy;
+           
+            $etu->save();
+            $i++;
+        } else {
+            return "Veuillez saisir toutes les données <br/>";
+        }
+    }
+    return ($i.' : all is done');
     }
     
 }

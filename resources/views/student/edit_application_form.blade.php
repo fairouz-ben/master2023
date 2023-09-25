@@ -116,7 +116,7 @@
   <div class="col-md-9">
     <input type="hidden" id="licence_type_value" value="{{$student->licence_type}}">
     @if ($student->licence_type =='LMD')
-    <input  type="radio" value="Classique" id="Classique" readonly @selected(false) disabled class="form-check-input" name="licence_type"   >
+    <input  type="radio" value="Classique" id="Classique" readonly @selected(false)  class="form-check-input" name="licence_type"   >
     <label class="form-check-label" for="Classique">
       {{__('translation.classique')}} 
     </label>
@@ -126,7 +126,7 @@
       {{__('translation.lmd')}} 
     </label>
     <br>
-    <input class="form-check-input" type="radio" name="licence_type" @selected(false) disabled id="ingenieur" value="ingenieur"  onclick="afficherCacher()">
+    <input class="form-check-input" type="radio" name="licence_type" @selected(false)  id="ingenieur" value="ingenieur"  onclick="afficherCacher()">
     <label class="form-check-label" for="ingenieur">
       {{__('translation.ingenieur')}} 
     </label>
@@ -136,22 +136,22 @@
         {{__('translation.classique')}}  
       </label>
       <br>
-      <input class="form-check-input" type="radio" name="licence_type" @selected(false) disabled id="LMD" value="LMD"  onclick="afficherCacher()">
+      <input class="form-check-input" type="radio" name="licence_type" @selected(false)  id="LMD" value="LMD"  onclick="afficherCacher()">
       <label class="form-check-label" for="LMD">
         {{__('translation.lmd')}}
       </label>
       <br>
-      <input class="form-check-input" type="radio" name="licence_type" @selected(false) disabled id="ingenieur" value="ingenieur"  onclick="afficherCacher()">
+      <input class="form-check-input" type="radio" name="licence_type" @selected(false)  id="ingenieur" value="ingenieur"  onclick="afficherCacher()">
       <label class="form-check-label" for="ingenieur">
         {{__('translation.ingenieur')}} 
       </label>
       @elseif ((($student->licence_type =='ingenieur')))
-      <input  type="radio" value="Classique" id="Classique" disabled  class="form-check-input" name="licence_type"   >
+      <input  type="radio" value="Classique" id="Classique"   class="form-check-input" name="licence_type"   >
       <label class="form-check-label" for="Classique">
         {{__('translation.classique')}}  
       </label>
       <br>
-      <input class="form-check-input" type="radio" name="licence_type" @selected(false) disabled id="LMD" value="LMD"  onclick="afficherCacher()">
+      <input class="form-check-input" type="radio" name="licence_type" @selected(false)  id="LMD" value="LMD"  onclick="afficherCacher()">
       <label class="form-check-label" for="LMD">
         {{__('translation.lmd')}}
       </label>

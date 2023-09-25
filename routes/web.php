@@ -34,7 +34,7 @@ Route::get('/', function () {
 
 //Route::get('/create_account/{fac}',[RegisterController::class,'index']);
 Route::post('/register',[RegisterController::class,'create']);
-Route::get('/getnotelmd',[StudentController::class,'calculeClassementLMD']);
+
 
 
 
@@ -89,6 +89,8 @@ Route::post('/admin',[LoginController::class,'adminLogin'])->name('admin.login')
 
 Route::middleware(['auth:admin'])->group( function(){
 
+  
+
     Route::post('/adminstorefile/{student}',[StudentController::class, 'update_file'])->name('admin.storefile');
    
 
@@ -119,6 +121,11 @@ Route::middleware(['auth:admin'])->group( function(){
 
     Route::middleware(['role_supadmin:administrator'])->group( function()
     {
+        Route::get('/getnotelmd',[StudentController::class,'calculeClassementLMD']);
+        Route::get('/getnoteclass',[StudentController::class,'calculeClassementClassique']);
+        Route::get('/getnoteing',[StudentController::class,'calculeClassementIngenieur']);
+
+        
         Route::post('/accept/{id}',[App\Http\Controllers\AdminController::class, 'accept']);
         Route::post('/refuse/{id}',[App\Http\Controllers\AdminController::class, 'refuse']);
         

@@ -106,6 +106,9 @@ class UsersDataTable extends DataTable
             Column::make('lastname')->title('Prenom'),
             Column::make('email')->title('Email'),
             Column::make('birthday')->title('Date de naissance'),
+            Column::make('licence_type')->title( 'licence type' )->searchable(true), 
+            // Column::make('phone'),
+          
             Column::make('email_verified_at'),//->title('active'), 
             //Column::make('created_at'),
         ];

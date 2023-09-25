@@ -14,11 +14,19 @@ use Yajra\DataTables\Services\DataTable;
 class StudentsDataTable extends  DataTable
 {
     private $DepIds=[];
+    private $LicenceType = '';
+    public function setLicenceType($type)
+    {
+        $this->LicenceType = $type;
+    }
 
     public function setDepIds($user_dep_Id)
     {
         $this->DepIds = $user_dep_Id;
     }
+    private $rowIndex =0;
+    
+    
 
      /////////////////////////////////first//////////////////////////////////
     public function dataTable(QueryBuilder $query): EloquentDataTable
@@ -31,6 +39,11 @@ class StudentsDataTable extends  DataTable
         ->addColumn('link', function($row){
                 $btn = '<a href="'. route('admin.show_uploaded_file',$row->id).'" >PDF doc</a>';
                 return $btn; 
+            })
+            ->addColumn('line_number', function ($student) {
+                
+                $this->rowIndex ++;
+                return $this->rowIndex;
             })
             ->editColumn("nom_ar",function($student){
         
@@ -100,7 +113,12 @@ class StudentsDataTable extends  DataTable
             $query->whereIn('department_id', $this->DepIds );
                 
         }
-      
+
+        if ($this->LicenceType) {
+            $query->where('licence_type', $this->LicenceType );
+                
+        }
+        $query->orderby('moy_classement','desc');
         return $query;
     }
 
@@ -122,7 +140,7 @@ class StudentsDataTable extends  DataTable
                     ->minifiedAjax()
                     ->dom('Bfrtip')
                     ->stateSave(true)
-                    ->orderBy(0, 'ASC')
+                    ->orderBy(6, 'desc') //'ASC'
                     ->buttons([
                         Button::make('pageLength'),//(['extend' => 'pageLength', 'className' => 'dropdown-toggle btn btn-info'])->text('Nombre de lignes'),
                         //Button::make('excel'),
@@ -149,7 +167,8 @@ class StudentsDataTable extends  DataTable
         
         
         return [ 
-            Column::make('id')->hidden()->printable(false)->searchable(false)->exportable(false),         
+            Column::make('id')->hidden()->printable(false)->searchable(false)->exportable(false), 
+            Column::make('line_number')->title( 'N°' )->searchable(false),        
           //  Column::make('nom_ar')->title( 'Nom' )->searchable(true),
            // Column::make('prenom_ar'),
             Column::make('nom_fr'),
@@ -157,7 +176,9 @@ class StudentsDataTable extends  DataTable
             Column::make('department_id')->title( 'Department' )->searchable(true),
             Column::make('special_1')->title( 'Spécialités' )->searchable(true),
             Column::make('moy_classement')->title( 'moyenne de classement' )->searchable(true),
-           // Column::make('phone'),
+           
+            Column::make('licence_type')->title( 'licence type' )->searchable(true), 
+            // Column::make('phone'),
            // Column::make('mat_bac'),
             Column::computed('link')
             ->exportable(true)

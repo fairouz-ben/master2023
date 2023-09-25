@@ -123,6 +123,10 @@ class AdminController extends Controller
                 
             $dataTable->setDepIds([$request->input('dep_id')]); 
         }
+        if(  ($request->input('licenceType')!== NULL) ) {
+        
+        $dataTable->setLicenceType($request->input('licenceType'));
+        }
         return $dataTable->render('admin.students.index_yaj',['departments'=>$departments]); 
     }
 

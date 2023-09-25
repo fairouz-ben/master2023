@@ -37,6 +37,20 @@
                         </select>
                         </div>
                     </div>
+                    <div class="row  p-3">
+                        <label for="type_id" class="col-sm-2 form-label"> Licence type</label>
+                        <div class="col-sm-4">
+                        <select  name="type_id"  onchange="applyFilter()"  id="type_id" class="form-select">
+                            <option value=""> --</option>
+                            <option value="LMD"> LMD</option>
+                            <option value="Classique">Classique</option>
+                            <option value="ingenieur">Ingenieur</option>
+                             
+                           
+        
+                        </select>
+                        </div>
+                    </div>
                   
                     
                 {{-- <button type="submit" class="btn btn-primary">Apply Filter</button>  --}}
@@ -63,11 +77,12 @@
     <script>
         function applyFilter() {
             var dep_id = $('#dep_id').val();
+            var type_id = $('#type_id').val();
             
             if (dep_id == null)
             window.location.href =  "{{ route('students') }}" ;
         else
-            window.location.href =  "{{ route('students') }}?dep_id=" + `${dep_id}`;
+            window.location.href =  "{{ route('students') }}?dep_id=" + `${dep_id}&licenceType=${type_id}`;
             
         }
     </script>
@@ -78,11 +93,16 @@
        if ( searchParams.has('dep_id'))
        {
         let param = searchParams.get('dep_id')
-        //console.log(param )
+       
         $("#dep_id option[value='"+ param +"']").attr("selected", "selected");
        
-        //Last, if you have multiple entries for the same parameter (like ?id=1&id=2), you can use
-        //let param = searchParams.getAll('id')
+   
+       }
+       if ( searchParams.has('licenceType'))
+       {
+        let param2 = searchParams.get('licenceType')
+      
+        $("#type_id option[value='"+ param2 +"']").attr("selected", "selected");
    
        }
         /*$.ajaxSetup({
