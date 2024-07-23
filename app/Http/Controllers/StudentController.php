@@ -59,8 +59,8 @@ class StudentController extends Controller
             $cities = City::all();
             $specialities = Speciality::where(['department_id' => $user->department_id, 'is_active' => 1, 'is_deleted' => 0])->get(['id', 'title_fr', 'title']);
 
-
-            return view('student.application_form')->with(['user' => $user, 'cities' => $cities, 'specialities' => $specialities, 'departments' => $dep]);
+            $formRoute=null;
+            return view('student.application_form')->with(['user' => $user, 'cities' => $cities, 'specialities' => $specialities, 'departments' => $dep,'formRoute'=>$formRoute]);
         }
         return back();
     }

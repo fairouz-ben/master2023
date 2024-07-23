@@ -45,10 +45,10 @@
           <label for="update_close_date">update_close_date</label>
           <input type="date" class="form-control" name="update_close_date" value="{{$Faculty->update_close_date}}" >
         </div>
-        <div class="form-group">
+        {{-- <div class="form-group">
           <label for="treatment_close_date">treatment_close_date</label>
           <input type="date" class="form-control" name="treatment_close_date" value="{{$Faculty->treatment_close_date}}" >
-        </div>
+        </div> --}}
 
         <div class="form-group">
           <label for="recoure_close_date">recoure_close_date</label>

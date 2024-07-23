@@ -16,7 +16,9 @@ class AppConfigSeeder extends Seeder
         $conf = [
             ['id' => 1,'key' => 'open_date','value' =>'' ,'data_type'=>'date'],
             ['id' => 2,'key' => 'close_date','value' => '', 'data_type'=>'date'],
-            ['id' => 3,'key' => 'default_lang','value' => 'fr','data_type'=>'text'],
+            ['id' => 3,'key' => 'date_disable_admin_account','value' => '', 'data_type'=>'date'],
+            
+            ['id' => 4,'key' => 'default_lang','value' => 'fr','data_type'=>'text'],
           ];
           foreach ($conf as $item) {
               AppConfig::updateOrCreate(['id' => $item['id']], $item);

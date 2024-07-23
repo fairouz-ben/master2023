@@ -20,10 +20,10 @@
             <label for="update_close_date">update_close_date</label>
             <input type="date" class="form-control" name="update_close_date" value="" >
           </div>
-          <div class="form-group">
+          {{-- <div class="form-group">
             <label for="treatment_close_date">treatment_close_date</label>
             <input type="date" class="form-control" name="treatment_close_date" value="" >
-          </div>
+          </div> --}}
 
           <div class="form-group">
             <div class="form-check form-switch">

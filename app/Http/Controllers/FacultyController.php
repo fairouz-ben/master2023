@@ -99,7 +99,7 @@ class FacultyController extends Controller
                 //'show_result'=> 'boolean',
                 'inscription_close_date' => 'nullable|date',
                 'update_close_date' => 'nullable|date',
-                'treatment_close_date' => 'nullable|date',
+               // 'treatment_close_date' => 'nullable|date',
                 'recoure_close_date'=> 'nullable|date',
 
             ]
@@ -119,7 +119,6 @@ class FacultyController extends Controller
             'show_result'  =>  $boolean_show_result, //$request->show_result,
             'inscription_close_date'  => $request->inscription_close_date,
             'update_close_date'  => $request->update_close_date,
-            'treatment_close_date'  => $request->treatment_close_date,
             'recoure_close_date' => $request->recoure_close_date
         ]);
 
@@ -136,7 +135,7 @@ class FacultyController extends Controller
             [
                 'inscription_close_date' => 'nullable|date',
                 'update_close_date' => 'nullable|date',
-                'treatment_close_date' => 'nullable|date',
+                //'treatment_close_date' => 'nullable|date',
             ]
         );
         if ($validator->fails()) {
@@ -149,7 +148,7 @@ class FacultyController extends Controller
             $faculty->update([
                 'inscription_close_date'  => $request->inscription_close_date,
                 'update_close_date'  => $request->update_close_date,
-                'treatment_close_date'  => $request->treatment_close_date,
+               // 'treatment_close_date'  => $request->treatment_close_date,
                 'show_result'  =>  $boolean_show_result, //$request->show_result,
             ]);
         }
@@ -166,7 +165,7 @@ class FacultyController extends Controller
             [
                 'inscription_close_date' => 'nullable|date',
                 'update_close_date' => 'nullable|date',
-                'treatment_close_date' => 'nullable|date',
+            
             ]
         );
         if ($validator->fails()) {

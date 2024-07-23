@@ -17,16 +17,16 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('department_id');
             $table->foreign('department_id')->references('id')->on('departments');
-            $table->enum('level' ,['m1','m2'])->nullable();
+            $table->enum('level', ['m1', 'm2', 'all'])->nullable();
             $table->string('title')->unique();
             $table->string('title_fr')->unique();
             $table->integer('number_available')->nullable();
-            $table->string('related_to_license')->nullable();// value: null,all, id (int)
+            $table->string('related_to_license')->nullable(); // value: null,all, id (int)
 
             $table->boolean('is_active')->default(true);
-            
+
             $table->boolean('is_deleted')->default(false);
-            
+
             $table->timestamps();
         });
     }
