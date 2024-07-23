@@ -19,9 +19,13 @@
                 <h4>  {{$user->faculty->name_fr}}</h4>
                 @endif
                 <p class="card-text">
-                  <h5>{{__('translation.form_title')}}</h5>
-                  
-                 
+                  <h5>
+                  @if ($student->etat =="Accepté")
+                  إستمارة التسجيل في الماستر
+                @else
+                {{__('translation.form_title')}}
+                @endif
+              </h5>
                 </p>
               </div>
               <div class="card-body">
@@ -60,14 +64,10 @@
                     <td>{{$user->department->name_ar}} </td>
                     
                   </tr> --}}
-                  <tr>
+                 
+                 {{---<tr>
                     <td><b>{{__('translation.title_Specialty_requested')}}</b></td>
                   </tr>
-{{--                  
-                  <tr>
-                    <td>{{__('translation.choix1')}}</td>
-                    <td>{{$student->special_1}} </td>
-                  </tr> --}}
 
                   @if ($specialities != null)
                   @foreach ( $specialities as $sp)
@@ -78,33 +78,68 @@
                     </tr>
                   @endforeach
                   @endif
-                {{-- @if ($student->special_3 != null)
-                  <tr>
-                    <td>{{__('translation.choix')}} 3</td>
-                    <td>{{$student->special_3}} </td>
-                    
-                  </tr> 
-                  @endif
-                  @if ($student->special_4 != null)
-                  <tr>
-                    <td>{{__('translation.choix')}} 4</td>
-                    <td>{{$student->special_4}} </td>
-                    
-                  </tr> 
-                  @endif   --}} 
+                  ---}}
 
                   <tr>
                     <td>{{__('translation.date_inscription')}}</td>
                     <td>{{$student->created_at}} </td>
                     
                   </tr>
+                 
+                  
+                  @if ($student->faculty->show_result)
                   <tr>
-                    <td>{{__('translation.Resultat')}}</td>
-                    <td>{{$student->etat}} </td>
-                    
+                    <?php
+                    $etatList_1 = array(array('id'=>'Accepté','name_ar'=>'مقبول','color'=>'success'), array('id'=>'Refusé','name_ar'=>'مرفوض','color'=>'danger'),array('id'=>'Non traité','name_ar'=>'غير معالج','color'=>'light'));
+                        ?>
+                                            
+                        <td> الرد من المؤسسة:  </td>
+                        <td>
+                        @foreach ( $etatList_1 as $state)
+                        @if ($student->etat == $state['id'])
+                        {{$state["name_ar"]}}  
+                        @endif
+                        @endforeach  
+                      </td>
+                     
                   </tr>
+                  <tr>
+                      
+                    @if ($student->etat !="Accepté")
+                    <td> سبب الرد:  </td> <td> {{ $student->motif }}    </td>
+                    @else
+                    <td>{{__('Orientation')}}:</td> <td> - 
+                      {{$speciality_name[0]['title']}}
+                      </td>
+
+                    @endif
+                  
+                  </tr>
+                @endif
 
                 </table> 
+
+
+                @if ($student->etat =="Accepté")
+              <table style="height: 200px"> 
+                <thead>
+                  <th>إمضاء نائب المدير </th>
+                  <th>إمضاء نائب العميد</th>
+                </thead>
+                <tr><td style="width: 50%"> </td>
+                    <td style="width: 50%"> </td>
+                </tr>
+                <tr><td  style="width: 50%">  <div  style="width: 50%"> </div><td>
+                    <td style="width: 50%"> <div  style="width: 50%"> </div></td>
+              </tr>
+              </table> 
+                    <p dir="rtl" style="font-size: 11px">
+                      -         على المترشح المقبول القدوم لإمضاء هذه الاستمارة لدا نائب المدير المكلف بالتكوين العالي في الطورين الأول والثاني والتكوين المتواصل والشهادات وكذا التكوين العالي في التدرج- جامعة الجزائر-1 .
+<br>
+-         يجب على المترشح المقبول التسجيل في الكلية التي قبل فيها خلال فترة لا تتجاوز 07 أيام كاملة بعد ظهور النتائج. بعد هذه المدة، يتم تعويضه بمترشح من قائمة الاحتياط.
+                    </p>
+                 
+                @endif
               </div>
               
               

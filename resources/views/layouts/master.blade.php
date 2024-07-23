@@ -32,7 +32,7 @@ $lang = app()->getLocale() == "ar" ? '.rtl':'';
 	 <blockquote class="blockquote text-center">
      <p class="mb-0"><h3>تسجيلات ماستر %20  </h3></p>
 	  <p class="mb-0"><h3>Inscription Master 20%</h3></p>
-	  <p> <h4>2023/2024</h4></p>
+	  <p> <h4>2024/2025</h4></p>
       {{-- <h2>{{$faculty->name_ar}} <br/>{{$faculty->name_fr}} </h2> --}}
       <p class="lead">{{__('translation.not')}}</p>
    

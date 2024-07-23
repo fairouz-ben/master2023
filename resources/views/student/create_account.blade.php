@@ -54,7 +54,7 @@
                     <label for="email" class="form-label text-md-end">{{ __('translation.email') }}</label>
                     
                     <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"  required="" placeholder="email"  name="email" value="{{ old('email') }}">
-                    <div id="emailHelp" class="form-text">{{__('translation.note_emailvalid')}}</div>
+                    <div id="emailHelp" class="form-text" style="color: red">{{__('translation.note_emailvalid')}}</div>
                                
                     
                   
@@ -85,7 +85,7 @@
                   <label for="licence_type" class="col-md-6 col-form-label ">{{ __('translation.licence_type') }}</label>
                    
                   <div class="col-md-9">
-                    <input class="form-check-input" type="radio" name="licence_type" id="LMD" value="LMD">
+                    <input class="form-check-input" type="radio" name="licence_type" id="LMD" value="LMD"  >
                     <label class="form-check-label" for="LMD"> {{__('translation.lmd')}} </label>
 <br>
                     <input  type="radio" value="Classique" id="Classique" class="form-check-input" name="licence_type"   >

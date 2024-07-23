@@ -4,12 +4,27 @@
 
   <h4 class="mb-3">{{__('translation.ask')}}</h4>
 
-<form class="dataForm" id="regForm"   method="POST" action="{{ route('student.store') }}" enctype="multipart/form-data">
+<form class="dataForm" id="regForm"   method="POST" action="{{ $formRoute ? route($formRoute,['user'=>$user->id]) : route('student.store') }}" enctype="multipart/form-data">
     @csrf
     <h1>{{__('translation.Register')}}</h1>
-   
-    أي تصريح كاذب من قبل الطالب يشكل جريمة يعاقب عليها القانون. <br>
-    Toute fausse déclaration par l'étudiant constitue une infraction punissable par la loi.<br>
+
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+@if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+    <div class="alert alert-warning" role="alert">
+    
+      أي تصريح كاذب من قبل الطالب يشكل جريمة يعاقب عليها القانون. <br>
+      Toute fausse déclaration par l'étudiant constitue une infraction punissable par la loi.<br>
+    </div>
   <!-- One "tab" for each step in the form: -->
   <div class="tab"><h3>{{__('translation.info_personal')}}</h3>
 	<div class="container">
@@ -174,7 +189,7 @@
           <div class="col-md-4">
             <label for="year_last_dip" class="form-label text-md-end">{{ __('translation.year_last_dip') }}</label>
 
-            <input id="year_last_dip" type="number" min="1970" max="2023" step="1" value="2022" class="form-control " name="year_last_dip" required="">
+            <input id="year_last_dip" type="number" min="1970" max="2024" step="1" value="2022" class="form-control " name="year_last_dip" required="">
 
                         </div>
         <div class="col-md-4">

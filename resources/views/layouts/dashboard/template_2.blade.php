@@ -1,5 +1,6 @@
 <!doctype html>
- <html lang="{{(App::isLocale('ar') ? 'ar' : 'fr')}}"  dir="{{(App::isLocale('ar') ? 'rtl' : 'ltr')}}">
+ <html lang="fr">
+  {{-- lang="{{(App::isLocale('ar') ? 'ar' : 'fr')}}"  dir="{{(App::isLocale('ar') ? 'rtl' : 'ltr')}}" --}}
 
 {{-- <html lang="ar"  dir="rtl"> --}}
 

@@ -17,10 +17,11 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Auth::user()->is_admin){
-            return abort(403);
-        }else{
+        //if(!Auth::user()->is_admin){
+            if(Auth::guard('admin') && Auth::guard('admin')->user()->is_active){
             return $next($request);
+        }else{
+            return abort(403); 
         }
     }
 }

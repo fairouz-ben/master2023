@@ -13,10 +13,10 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="lastname" class="col-md-4 col-form-label text-md-end">{{ __('translation.name_fr') }}</label>
+                            <label for="lastname" class="col-md-4 col-form-label text-md-end">{{ __('translation.prenom_fr') }}</label>
 
                             <div class="col-md-6">
-                                <input id="lastname" value="{{$user->lastname}}" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname"  required >
+                                <input id="lastname" value="{{$user->lastname}}" type="text" placeholder="{{ __('translation.prenom_fr_') }}"  class="form-control @error('lastname') is-invalid @enderror" name="lastname"  required >
 
                                 @error('lastname')
                                     <span class="invalid-feedback" role="alert">
@@ -26,10 +26,10 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('translation.prenom_fr') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('translation.name_fr') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" value="{{$user->name}}" placeholder="{{ __('translation.prenom_fr_') }}" class="form-control @error('name') is-invalid @enderror" name="name" required autocomplete="name" autofocus>
+                                <input id="name" type="text" value="{{$user->name}}" placeholder="{{ __('translation.name_fr_') }}" class="form-control @error('name') is-invalid @enderror" name="name" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -150,21 +150,20 @@
 
 <!------------------------------------------>
                         
+  
 
-              
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                        <div class="d-grid gap-2 col-4 mx-auto">
+                           
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('translation.save') }}
                                 </button>
-                            </div>
+                           
                         </div>
                     </form>
                 </div>
                 <div class="col align-self-end p-5">
                   @if(Auth::guard('admin')->user()->role_id =='1')
-                <form method="POST" action="{{ route('users.delete', $user->id) }}" >
+                <form method="POST" action="{{ route('users.delete', $user->id) }}" onsubmit="return confirm('Are you sure you want to submit this form?');" >
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Suppression définitive !</button>

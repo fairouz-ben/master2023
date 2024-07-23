@@ -29,7 +29,7 @@
           <th scope="col">Name fr</th>
           <th scope="col">Nombre de choix par specialité</th>
           <th scope="col">Status</th>
-          
+          <th scope="col">show the Result</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
@@ -49,6 +49,14 @@
 
             </td>
             <td>
+              @if($department->show_result)
+              <span class="badge bg-success">ON</span>
+              @else
+              <span class="badge bg-danger">OFF</span>
+              @endif
+
+            </td>
+            <td>
                     
               
               <div class="dropdown">
@@ -57,6 +65,20 @@
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li> <a type="submit" class="dropdown-item" href="{{url('departments/edit/'.$department->id)}}"><i class="bi bi-pencil-square m-1"></i> Edit</a></li>
+                    <li>
+                        <form action="{{route('OnOffResult', $department->id)}}" method="post">
+                          @csrf
+                          @if(!$department->show_result)
+                          <button type="submit" class="dropdown-item"><i class="bi bi-eye m-1"></i>  ON result</button>
+                          @else
+                    
+                          
+                          <button type="submit" class="dropdown-item"><i class="bi bi-archive m-1"></i> OFF result</button>
+                          @endif
+                        </form> 
+                      
+                      </li>
+                     
                     
                     @if(!$department->is_active)
                   <li>

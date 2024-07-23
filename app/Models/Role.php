@@ -9,15 +9,16 @@ class Role extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    
+
     protected $fillable = [
-       
-         'name', 
-         'code', 
-         'description'
+
+        'name',
+        'code',
+        'description'
     ];
 
-    public function usadminsers(){
-        return $this->hasMany(Admin::class,'role_id','id');
+    public function usersadmins()
+    {
+        return $this->hasMany(Admin::class, 'role_id', 'id');
     }
 }

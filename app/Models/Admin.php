@@ -20,6 +20,7 @@ class Admin extends Authenticatable
         'phone',
         'faculty_id',
         'role_id',
+        'is_active',
     ];
 
     protected $hidden = [
@@ -35,5 +36,15 @@ class Admin extends Authenticatable
     public function role()
     {
         return $this->belongsTo(Role::class,'role_id','id');
+    }
+    public function hasRole($role)
+    {
+        // Assuming you have a roles relationship or a role field
+       // return $this->role === $role;
+        // Or if you have a roles relationship as $this->belongsToMany(Role::class);
+       // return $this->role->contains('name', $role);
+
+        // Check if the user's role matches the given role
+        return $this->role && $this->role->name === $role;
     }
 }

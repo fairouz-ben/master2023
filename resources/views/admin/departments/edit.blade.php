@@ -36,7 +36,7 @@
         </div>
         <div class="form-group">
           <label for="code">faculty</label>
-          <select name="faculty_id" id="faculty_id" class="form-control">
+          <select name="faculty_id" id="faculty_id" class="form-select">
             <option value="">select</option>
             @foreach ($faculties as  $fac)
               @if ($department->faculty_id== $fac->id)

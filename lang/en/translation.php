@@ -13,9 +13,10 @@ return[
 'Create an account'=>'Create an account',
 'Register'=>'Register',
 
-'not'=>'This form does not apply to LMD 2023 graduates of the university',
+'not'=>'This form does not apply to LMD 2024 graduates of the university',
 'ask'=>'Please complete this form carefully ',
 'info_personal'=>'Information personal',
+'card_info'=>'Information card',
 'student'=>'Student',
 'name_fr'=>'Last(family) name(fr)',
 'name_ar'=>'اللقب',  
@@ -26,7 +27,7 @@ return[
 'phone'=>'phone',
 'email'=>'Email',
 'password'=>'password',
-
+'save_modif'=>'Save the modification',
 'password_requier'=>'Your password must be at least 8 characters',
 'password-confirm'=>'password confirmation',
 'mat_bac'=>'BAC number',
@@ -65,5 +66,7 @@ return[
 'classique'=>'Licence Classiques',
 'ingenieur'=>'Engineer',
 'master_inscription'=>'master_inscription',
+'form'=>'Form',
+'goback'=>'Go Back'
 ];
 ?>

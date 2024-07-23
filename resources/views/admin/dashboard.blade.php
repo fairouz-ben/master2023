@@ -2,10 +2,10 @@
 
 @section('content')
 <div class="container" style="margin-top: 30px;">
- <p> hello {{ Auth::user()->name }}</p> 
+ <p> Welcome {{ Auth::user()->name }}</p> 
 
  @if (Auth::guard('admin')->user())
- Hello Admin! {{ Auth::guard('admin')->user()->name }}
+ {{-- Hello Admin! {{ Auth::guard('admin')->user()->name }} --}}
  @endif
 
 </div>

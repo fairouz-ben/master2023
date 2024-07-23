@@ -45,7 +45,7 @@ class LoginController extends Controller
 
     public function showAdminLoginForm()
     {
-        return view('auth.login', ['route' => route('admin.login-view'), 'title'=>'Admin']);
+        return view('auth.loginAdmin', ['route' => route('admin.login-view'), 'title'=>'Admin']);
     }
 
     public function adminLogin(Request $request)

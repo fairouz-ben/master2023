@@ -32,8 +32,12 @@
                             <label for="faculty_id" class="col-md-4 col-form-label text-md-end">{{ __('faculty_id') }}</label>
 
                             <div class="col-md-6">
-                                <input id="faculty_id" type="text" class="form-control @error('faculty_id') is-invalid @enderror" name="faculty_id" value="{{ old('faculty_id') }}" required>
-
+                                <select name="faculty_id" id="faculty_id" required class="form-select @error('faculty_id') is-invalid @enderror">
+                                    <option value=""></option>
+                                    @foreach ($faculties as $faculty)
+                                    <option value="{{$faculty->id}}">{{$faculty->name_fr}}</option>
+                                    @endforeach
+                                </select>
                                 @error('faculty_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -45,8 +49,12 @@
                             <label for="role_id" class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
 
                             <div class="col-md-6">
-                                <input id="role_id" type="text" class="form-control @error('role_id') is-invalid @enderror" name="role_id" value="{{ old('role_id') }}" required>
-
+                                <select name="role_id" id="role_id" required class="form-select @error('role_id') is-invalid @enderror">
+                                    <option value=""></option>
+                                    @foreach ($roles as $role)
+                                    <option value="{{$role->id}}">{{$role->name}}</option>
+                                    @endforeach
+                                </select>
                                 @error('role_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

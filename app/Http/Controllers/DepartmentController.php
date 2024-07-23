@@ -9,7 +9,10 @@ use Illuminate\Validation\Rule;
 
 class DepartmentController extends Controller
 {
-    
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     public function index()
     {
         $departments = Department::all();
@@ -18,6 +21,16 @@ class DepartmentController extends Controller
     public function add(){
         $faculties = Faculty::all();
         return view('admin.departments.add')->with(['faculties'=>$faculties]);
+    }
+    public function OnOffShowResult(Department $department)
+    {
+        $department->update([
+            'show_result' => !$department->show_result,
+        ]);
+      
+      flash('The datat sussceefully updated','success');
+    // return redirect()->back()->with('success', 'action successfully!');
+        return back();
     }
     public function active(Department $department)
     {

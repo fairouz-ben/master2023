@@ -14,12 +14,12 @@
                         </div>
                     @endif
 
-                
                     @if (Auth::guard('admin')->user())
-                    Hello Admin! {{ Auth::guard('admin')->user()->name }}
+                    Welcome! {{ Auth::guard('admin')->user()->name }}
                     @endif
-                  
-                   
+                   <br>
+                    {{$message ?? ''}}
+
                 </div>
             </div>
         </div>

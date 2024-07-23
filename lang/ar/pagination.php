@@ -16,7 +16,7 @@ return [
     'previous' => 'السابق',
     'next' => 'التالى',
     'Back to the top'=>'عد إلى الأعلى',
-    'The Academic Year'=>'  السنة الجامعية 2023–2024 . ',
+    'The Academic Year'=>'  السنة الجامعية 2024–2025 . ',
     'url_error'=>'عنوان url خاطئ!',
     'home'=>'الصفحة الرئسية',
     'app_title'=>'ماستر %20 ',

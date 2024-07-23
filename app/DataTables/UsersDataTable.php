@@ -20,6 +20,11 @@ class UsersDataTable extends DataTable
      * @param QueryBuilder $query Results from query() method.
      * @return \Yajra\DataTables\EloquentDataTable
      */
+    protected $FacId= null;
+    public function setFacId($id)
+    {
+        $this->FacId=$id;
+    }
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
@@ -56,7 +61,12 @@ class UsersDataTable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery();
+        $query = $model->newQuery();
+
+        if ($this->FacId && $this->FacId !== 'all' ) {
+            $query->where('faculty_id', $this->FacId);
+        }
+        return $query;
     }
 
     /**

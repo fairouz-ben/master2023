@@ -16,7 +16,7 @@ return [
     'previous' => ' Previous',
     'next' => 'Next ',
     'Back to the top'=>'Back to the top',
-    'The Academic Year'=>'The Academic Year 2023–2024 . ',
+    'The Academic Year'=>'The Academic Year 2024–2025 . ',
     'url_error'=>'wrongue URL!',
     'home'=>'Home',
     'app_title'=>'Master 20%',

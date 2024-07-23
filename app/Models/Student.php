@@ -44,6 +44,8 @@ class Student extends Model
         'special_4',
         'motif',
         'etat',
+        'recours',
+        'recours_reponse',
     ];
 
     /**

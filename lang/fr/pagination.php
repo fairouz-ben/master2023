@@ -16,7 +16,7 @@ return [
     'previous' => ' Previous',
     'next' => 'Next ',
     'Back to the top'=>'Retour au sommet',
-    'The Academic Year'=>'L\'année universitaire 2023–2024 . ',
+    'The Academic Year'=>'L\'année universitaire 2024–2025 . ',
     'url_error'=>'URL erronée!',
     'home'=>'Accueil',
     'app_title'=>'Master 20%',

@@ -65,6 +65,8 @@ return new class extends Migration
             $table->string('oriented_to_speciality')->nullable(); 
             $table->mediumText('motif')->nullable();
             $table->enum('etat' ,['Accepté','Refusé','Non traité'])->default('Non traité');
+            $table->text('recours')->nullable();
+            $table->text('recours_reponse')->nullable();
             $table->boolean('is_deleted')->default(false);
             $table->rememberToken();
             $table->timestamps();

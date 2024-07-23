@@ -1,16 +1,13 @@
-@extends('layouts.master')
+@extends('layouts.dashboard.template_2')
 
 @section('content')
+<div class="card">
+    <div class="card-header">{{ $title ?? "" }} Formulaire</div>
 
-  <h4 class="mb-3">{{__('translation.ask')}}</h4>
+    <div class="card-body">
 
 <form class="dataForm" id="regForm"   method="POST" action="{{ route('student.update',$student->id) }}" enctype="multipart/form-data">
     @csrf
-    <h1>{{__('translation.Register')}}</h1>
-   
-    أي تصريح كاذب من قبل الطالب يشكل جريمة يعاقب عليها القانون. <br>
-    Toute fausse déclaration par l'étudiant constitue une infraction punissable par la loi.<br>
-  <!-- One "tab" for each step in the form: -->
   <div class="tab"><h3>{{__('translation.info_personal')}}</h3>
 	<div class="container">
 		<div class="row">
@@ -264,26 +261,19 @@
 
               </div>
           </div>
+
+          <div class="col-sm-4">
+            <label for="moyenne_classement" class="col-md-6 col-form-label ">{{ __('Moyenne de classement') }}</label>
+
+            <div class="col-md-4">
+                <input type="number" min="0" class="form-control " readonly name="moyenne_classement"  value="{{$student->moy_classement ?? 0}}">
+
+            </div>
+        </div>
   </div>
 </div>
   <div class="tab"><h2>{{ __('translation.master_inscription') }} </h2>
 	
-    <div class="form-group row p-2">
-      <div class="alert alert-danger alert-dismissible fade show col-11" role="alert">
-        {{__('translation.doc_alert_message')}}
-        <a href="{{asset('fichiers_joints.pdf')}}" class="alert-link">{{ __('translation.fichiers joints') }} </a>.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-              <label for="file" class="col-md-3 col-form-label ">{{ __('translation.file') }}</label>
-              <p><a href="{{route('admin.show_uploaded_file',['id'=>$student->id])}}">Lisez le fichier téléchargé :</a></p>
-         
-              <div class="col-md-9">
-               
-                 
-                  <p id="errorMessage" style="color: red;"></p>
-              </div>
-             
-         </div>
 	
 	<div class="form-group row p-2">
             <label for="departments" class="col-md-3 col-form-label text-left"><h5> {{__('translation.department')}}<span style="color:red;"> *</span></h5></label>
@@ -348,37 +338,79 @@
           
           </div>
           <hr class="my-4">  
+          <label for="recours"></label>
+        
+          <div class="row">
+            <div class="col-md-6 ">
+
+              <label for="recours" class="form-label">الطعن</label>
+                      
+                      <textarea name="recours" id="" cols="30" rows="5"  readonly class="form-control">
+                        {{$student->recours}}
+                      </textarea>
+             </div>
+            <div class="col-md-6 ">
+              <label for="recours_reponse" class="form-label">الرد على الطعن</label>
+                      
+              <textarea name="recours_reponse" id="" cols="30" rows="5" {{ Auth::user()->role_id == 3 ? 'readonly' : ''}}  class="form-control">{{$student->recours_reponse}}
+              </textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 p-3 ">
+             
+            
+              <h3>الوضعية: 
+              @if ($student->etat == 'Accepté' )  <span class="badge bg-success">   {{$student->etat}}</span>
+              @elseif ($student->etat == 'Refusé' )
+              <span class="badge bg-danger">   {{$student->etat}}</span>
+              @else <span class="badge bg-secondary">   {{$student->etat}}</span>
+              @endif
+            </h3>
+             
+            </div>
+            
+
+          </div>
           {{-- <p><input oninput="this.className = ''" name="fin"></p> --}}
   </div>
-  
+  <hr class="my-4"> 
+  <div class="d-grid gap-2 col-4 mx-auto">
 
-  
-   <div class="text-end " style="overflow:auto;padding-left: 15px; padding-right: 15px;">
-    <div class="col align-self-end next-prev" >
-      <button type="button"  id="prevBtn" onclick="nextPrev(-1)">&#8810;{{__('pagination.previous')}}</button>
-      
-      
-      <button type="button"  id="nextBtn" onclick="nextPrev(1)">{{__('pagination.next')}}  &#8811;</button>
-    </div>
+    <button type="submit" class="btn btn-primary">
+      {{ __('translation.save') }}
+  </button>
   </div>
-  
-  <!-- Circles which indicates the steps of the form: -->
-  <div style="text-align:center;margin-top:40px;">
-    <span class="step">1</span>
-    <span class="step">2</span>
-    <span class="step">3</span>
-  </div>
+ 
 </form>
-@include('student.edit_file')
 
-<div class="col align-self-end p-5">
+
+<div class="form-group  p-2">
+      
+    <label for="file" class="col-md-3 col-form-label ">{{ __('translation.file') }}</label>
+    <p><a href="{{route('admin.show_uploaded_file',['id'=>$student->id])}}">Lisez le fichier téléchargé :</a></p>
+
+    <div class="col-md-9">
+     
+       
+        <p id="errorMessage" style="color: red;"></p>
+    </div>
+    @include('student.edit_file')
+</div>
+<div class="col-12 text-center">
+  <a href="{{ route('resultat_print_admin',['id'=>$student->id]) }}"  target="_blank" class="btn btn-success btn-sm ml-auto"><i class="fa fa-print"></i> {{ __('translation.print') }}</a>
+</div>
+<div class="col align-self-end text-end p-5">
   @if (Auth::guard('admin')->user()->role_id =='1')
-<form method="POST" action="{{ route('student.delete', $student->id) }}" >
+<form method="POST" action="{{ route('student.delete', $student->id) }}"  onsubmit="return confirm('Are you sure you want to submit this form?');">
   @csrf
   @method('DELETE')
-  <button type="submit" class="btn btn-danger">حذف نهائي! </button>
+  <button type="submit" class="btn btn-danger"> Suppression définitive ! </button>
 </form>
 @endif
+</div>
+
+</div>
 </div>
 
 <script type="text/javascript">

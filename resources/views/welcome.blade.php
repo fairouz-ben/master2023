@@ -98,66 +98,79 @@
   <!-- Marketing messaging and featurettes
   ================================================== -->
   <!-- Wrap the rest of the page in another container to center all the content. -->
+@if ($etat)
+<div class="container marketing">
 
-  <div class="container marketing">
-
-    <!-- Three columns of text below the carousel -->
-    <div class="row">
-      <div class="col-lg-4">
-         <img src="{{asset('islamic_fr.png')}}" class="bd-placeholder-img rounded-circle img-fluid"  width="200" height="200" alt="fac SI">
-        <h2>كلية العلوم الإسلامية</h2>
-        <p>Faculté Sciences Islamique</p>
-        {{-- <p><a class="btn btn-secondary" href="{{ url('create_account/is') }}"> {{__('translation.Inscription')}} &raquo; </a></p> --}}
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <img src="{{asset('droit_fr.png')}}" class="bd-placeholder-img rounded-circle img-fluid"  width="200" height="200" alt="fac SI">
-       <h2>كلية الحقوق</h2>
-       <p>Faculté de Droit</p>
-       {{-- <p><a class="btn btn-secondary" href="{{ url('create_account/droit') }}"> {{__('translation.Inscription')}} &raquo;</a></p> --}}
-     </div><!-- /.col-lg-4 -->
-     <div class="col-lg-4">
-      <img src="{{asset('sciences_fr.png')}}" class="bd-placeholder-img rounded-circle img-fluid"  width="200" height="200" alt="fac SI">
-     <h2>كلية العلوم</h2>
-     <p>Faculté  des Sciences </p>
-     {{-- <p><a class="btn btn-secondary" href="{{ url('create_account/sciences') }}"> {{__('translation.Inscription')}} &raquo;</a></p> --}}
-   </div><!-- /.col-lg-4 -->
-    </div><!-- /.row -->
-        <!-- Three columns of text below the carousel -->
-        <div class="row m-13">
-          <div class="col-lg-12 text-center">
-             <img src="{{asset('login.webp')}}" class="bd-placeholder-img rounded-circle img-fluid"  width="200" height="200" alt="fac SI">
-            <h2>الدخول</h2>
-            <p>login</p>
-            <p><a class="btn btn-secondary" href="{{ url('login') }}"> login &raquo;</a></p>
-          </div><!-- /.col-lg-4 -->
-          
-          <!-- /.col-lg-4 -->
-          {{-- <div class="col-lg-4">
-            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-    
-            <h2>Heading</h2>
-            <p>And lastly this, the third column of representative placeholder content.</p>
-            <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-          </div> --}}
-        </div><!-- /.row -->
-
-
-    <!-- START THE FEATURETTES -->
-
-    <hr class="featurette-divider">
-
-    <div class="col-6">
-      <p>
-        <span style="color: red">
-        في حالة تعذر الحصول على 'رابط التحقق من عنوان بريدك الإلكتروني في المنصة'. يرجى مراسلتنا عبر البريد الإلكتروني
-        <a href="mailto:master1@univ-alger.dz">master1@univ-alger.dz</a>
-        </span>
-      </p>
+  <!-- Three columns of text below the carousel -->
+  <div class="row">
+    <div class="col-lg-4">
+       <img src="{{asset('islamic_fr.png')}}" class="bd-placeholder-img rounded-circle img-fluid"  width="200" height="200" alt="fac SI">
+      <h2>كلية العلوم الإسلامية</h2>
+      <p>Faculté Sciences Islamique</p>
+      <b>{{__('translation.Inscription')}}</b>
+      <p><a class="btn btn-secondary" href="{{ url('create_account/is') }}"> {{__('translation.Create an account')}} &raquo;  </a></p>
     </div>
-    <hr class="featurette-divider">
-    <!-- /END THE FEATURETTES -->
+    <!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+      <img src="{{asset('droit_fr.png')}}" class="bd-placeholder-img rounded-circle img-fluid"  width="200" height="200" alt="fac SI">
+     <h2>كلية الحقوق</h2>
+     <p>Faculté de Droit</p>
+     <b>{{__('translation.Inscription')}}</b>
+     <p><a class="btn btn-secondary" href="{{ url('create_account/droit') }}">  {{__('translation.Create an account')}}  &raquo;</a></p>
+   </div><!-- /.col-lg-4 -->
+   <div class="col-lg-4">
+    <img src="{{asset('sciences_fr.png')}}" class="bd-placeholder-img rounded-circle img-fluid"  width="200" height="200" alt="fac SI">
+   <h2>كلية العلوم</h2>
+   <p>Faculté  des Sciences </p>
+   <b>{{__('translation.Inscription')}}</b>
+   <p><a class="btn btn-secondary" href="{{ url('create_account/sciences') }}"> {{__('translation.Create an account')}} &raquo;</a></p>
+ </div><!-- /.col-lg-4 -->
+  </div><!-- /.row -->
+      <!-- Three columns of text below the carousel -->
+      <hr class="featurette-divider">
+      <div class="row m-13">
+        <div class="col-lg-12 text-center">
+           <img src="{{asset('login.webp')}}" class="bd-placeholder-img rounded-circle img-fluid"  width="200" height="200" alt="fac SI">
+          <h2>الدخول</h2>
+          <p>login</p>
+          <p><a class="btn btn-secondary" href="{{ url('login') }}"> الدخول إلى الحساب &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        
+        <!-- /.col-lg-4 -->
+        {{-- <div class="col-lg-4">
+          <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+  
+          <h2>Heading</h2>
+          <p>And lastly this, the third column of representative placeholder content.</p>
+          <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+        </div> --}}
+      </div><!-- /.row -->
 
-  </div><!-- /.container -->
+
+  <!-- START THE FEATURETTES -->
+
+  {{-- <hr class="featurette-divider">
+
+  <div class="col-6">
+    <p>
+      <span style="color: red">
+      في حالة تعذر الحصول على 'رابط التحقق من عنوان بريدك الإلكتروني في المنصة'. يرجى مراسلتنا عبر البريد الإلكتروني
+      <a href="mailto:master1@univ-alger.dz">master1@univ-alger.dz</a>
+      </span>
+    </p>
+  </div>
+  <hr class="featurette-divider"> --}}
+  <!-- /END THE FEATURETTES -->
+
+</div><!-- /.container -->
+@else
+<div class="container marketing">
+<div class="alert alert-danger" role="alert">
+  The plateform is closed!
+</div>
+</div>
+@endif
+  
 
 
   <!-- FOOTER -->

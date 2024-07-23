@@ -13,7 +13,7 @@
             <input type="hidden" name="id_st" id="id_st" value="-" required>
             <div class="form-group">
               <label for="etat">Etat</label>
-              <select  class="form-control" name="etat" id="etat" required>
+              <select  class="form-select" name="etat" id="etat" required>
                 <option value="Accepté">Accepté</option>
                 <option value="Refusé">Refusé</option>
                 <option value="Non traité" selected>Non traité</option>
@@ -21,21 +21,28 @@
             </div>
 
             <div class="form-group">
-              <label for="motif">motif</label>
-              <select class="form-control" id="motif" name="motif" required disabled>
-                <option value="null" selected> -<option>
-                <option value="1">1- Dossier incomplet</option>
-                <option value="2">2- Fichier endommagé</option>
-                <option value="3">3- Spécialité inacceptable</option>
-                <option value="4">4- Pas places pédagogiques</option>
-                <option value="5">5- Autre: précisé:………</option>
-              </select>
+              <label for="motif">السبب/motif</label>
+              <input type="text" list="list_motif" name="motif" id="motif"  class="form-control"/>
+            
+              <datalist id="list_motif">
+                <option >ملف غير مكتمل</option>
+                <option > ملف تالف</option>
+                <option >تخصص غير مقبول</option>
+                <option >لا توجد أماكن بيداغوجية</option>
+                <option >أخرى: حدد…</option>
+                {{--  <option >Dossier incomplet</option>
+                <option >Fichier endommagé</option>
+                <option >Spécialité inacceptable</option>
+                <option >Pas places pédagogiques</option>
+                <option >Autre: précisé…</option> --}}
+              </datalist>
+             
             </div>
 
             <div class="form-group">
               <label for="oriented_to_speciality">Orientation</label>
-              <select disabled name="oriented_to_speciality" id="oriented_to_speciality" required  class="form-control">
-                <option value="">....</option>
+              <select  name="oriented_to_speciality" id="oriented_to_speciality" required  class="form-select">
+                
               </select>
             </div>
             <div class="row m-4">

@@ -14,7 +14,7 @@
                         </div>
                     @endif
                     <div class="alert alert-danger" role="alert">
-                        لقد تم غلق التسجيل
+                        لقد تم غلق {{$message}}
                     </div>
                    
                   
