@@ -49,8 +49,8 @@
                     </div>
                     <div class="col-md-6 ">
                         <label for="nom_fr" class="form-label">Nom(fr)</label>
-                        <input type="text" class="form-control" id="nom_fr" value="{{ $user->name }}" required=""
-                            oninput="this.className = ''" name="nom_fr">
+                        <input type="text" class="form-control" id="nom_fr" value="{{ $user->name }}" required readonly
+                             name="nom_fr">
 
                         <div class="valid-feedback">
                             Looks good!
@@ -60,7 +60,7 @@
                         <label for="prenom_fr" class="form-label">Prenom(fr)</label>
 
                         <input type="text" class="form-control" id="prenom_fr" value="{{ $user->lastname }}"
-                            required="" oninput="this.className = ''" name="prenom_fr">
+                            required readonly name="prenom_fr">
                         <div class="valid-feedback">
                             Looks good!
                         </div>
@@ -69,7 +69,7 @@
                         <label for="date_nais" class="form-label text-md-end">{{ __('translation.date_nais') }}</label>
 
                         <input type="date" class="form-control" id="date_nais" value="{{ $user->birthday }}"
-                            required="" placeholder="00/00/0000" oninput="this.className = ''" name="date_nais">
+                            required readonly name="date_nais">
 
                         <div class="valid-feedback">
                             Looks good!

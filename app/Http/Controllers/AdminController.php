@@ -29,13 +29,10 @@ class AdminController extends Controller
     public function dashboard()
     {
 
-        $message=' Your account is disabled';
-        if(Auth::guard('admin')->user()->is_active){
+        $message = ' Your account is disabled';
+        if (Auth::guard('admin')->user()->is_active) {
             return view('admin.dashboard');
-            
-        }
-        else return view('admin.admin',compact('message'));
-        
+        } else return view('admin.admin', compact('message'));
     }
     public function index0()
     {
@@ -47,8 +44,9 @@ class AdminController extends Controller
     
      */
     //etat update
-    public function update(Request $request, $id) 
+    public function update(Request $request, $id)
     {
+        //I muste validate $request->oriented_to_speciality != null if etat = Accepté
         $request->validate([
             //'motif' => 'required',
             'etat' => 'required',
@@ -125,18 +123,18 @@ class AdminController extends Controller
         //     'dep_id' => $request->input('dep_id'),
         //     'licenceType' => $request->input('licenceType')
         // ]);
-        
-        $facName_ar=   Auth::guard('admin')->user()->faculty->name_ar;
+
+        $facName_ar =   Auth::guard('admin')->user()->faculty->name_ar;
         $selectedDeparts =  Auth::guard('admin')->user()->faculty->departments()->get();
         $departments = Department::where('faculty_id', Auth::guard('admin')->user()->faculty->id)->where('is_active', '1')->get();
         $facid =  Auth::guard('admin')->user()->faculty->id;
-        if ($faculty->exists && (Auth::guard('admin')->user()->hasRole('administrator') )) {
+        if ($faculty->exists && (Auth::guard('admin')->user()->hasRole('administrator'))) {
             $selectedDeparts = $faculty->departments()->get();
             $departments = Department::where('faculty_id', $faculty->id)->where('is_active', '1')->get();
-            $facName_ar=  $faculty->name_ar;
+            $facName_ar =  $faculty->name_ar;
             $facid = $faculty->id;
-        } 
-      
+        }
+
         $list = [];
         if ($selectedDeparts) {
 
@@ -160,7 +158,7 @@ class AdminController extends Controller
         //     'dep_ids' => $dataTable->getDepIds(),
         //     'licenceType' => $dataTable->getLicenceType()
         // ]);
-        return $dataTable->render('admin.students.index_yaj', ['departments' => $departments, 'facName_ar' => $facName_ar, 'facid'=>$facid]);
+        return $dataTable->render('admin.students.index_yaj', ['departments' => $departments, 'facName_ar' => $facName_ar, 'facid' => $facid]);
     }
 
     public function show_uploaded_file($id)
@@ -206,12 +204,12 @@ class AdminController extends Controller
     public function list_recours(Request $request = null, RecoursDataTable $dataTable)
     {
         $selectedDeparts =  Auth::guard('admin')->user()->faculty->departments()->get();
-        $facName=   Auth::guard('admin')->user()->faculty->name_fr;
+        $facName =   Auth::guard('admin')->user()->faculty->name_fr;
         $departments = Department::where('faculty_id', Auth::guard('admin')->user()->faculty->id)->where('is_active', '1')->get();
         $facid =  Auth::guard('admin')->user()->faculty->id;
-       if( Auth::user()->role_id == 1){
-        $departments = Department::where('is_active', '1')->get();
-    }
+        if (Auth::user()->role_id == 1) {
+            $departments = Department::where('is_active', '1')->get();
+        }
         $list = [];
         if ($selectedDeparts) {
             //$idList = $selectedDeparts->pluck('id');            
@@ -230,13 +228,14 @@ class AdminController extends Controller
             $licenceType = explode('?', $request->input('licenceType'))[0];  // Sanitize the licenceType input
             $dataTable->setLicenceType($licenceType);
         }
-        return $dataTable->render('admin.students.recours_list', ['departments' => $departments,'facName'=>$facName]);
+        return $dataTable->render('admin.students.recours_list', ['departments' => $departments, 'facName' => $facName]);
     }
 
- 
 
-public function showStudentsStat(){
-    /*
+
+    public function showStudentsStat()
+    {
+        /*
    // Fetch the statistics for each faculty
    $statistics = Student::select('faculties.name_fr as faculty_name', 'etat', DB::raw('count(*) as total'))
    ->join('faculties', 'students.faculty_id', '=', 'faculties.id')
@@ -255,33 +254,30 @@ $facultyTotals = Student::select('faculties.name_fr as faculty_name', DB::raw('c
    ->groupBy('faculty_id')
    ->pluck('total', 'faculty_name');
    */
-  //optimazed
-     // Fetch all required data in a single query
-     $data = Student::select('faculties.name_fr as faculty_name', 'etat', DB::raw('count(*) as total'))
-     ->join('faculties', 'students.faculty_id', '=', 'faculties.id')
-     ->groupBy('faculty_id', 'etat')
-     ->get();
+        //optimazed
+        // Fetch all required data in a single query
+        $data = Student::select('faculties.name_fr as faculty_name', 'etat', DB::raw('count(*) as total'))
+            ->join('faculties', 'students.faculty_id', '=', 'faculties.id')
+            ->groupBy('faculty_id', 'etat')
+            ->get();
 
- // Process the data to group by faculty_name and etat
- $statistics = $data->groupBy('faculty_name')->map(function ($faculty) {
-     return $faculty->keyBy('etat');
- });
+        // Process the data to group by faculty_name and etat
+        $statistics = $data->groupBy('faculty_name')->map(function ($faculty) {
+            return $faculty->keyBy('etat');
+        });
 
- // Calculate totals for each etat
- $totals = $data->groupBy('etat')->map(function ($etatGroup) {
-     return $etatGroup->sum('total');
- });
+        // Calculate totals for each etat
+        $totals = $data->groupBy('etat')->map(function ($etatGroup) {
+            return $etatGroup->sum('total');
+        });
 
- // Calculate the total number of students for each faculty
- $facultyTotals = $data->groupBy('faculty_name')->map(function ($facultyGroup) {
-     return $facultyGroup->sum('total');
- });
-     // Get the current date and time
-     $currentDateTime = Carbon::now()->toDateTimeString();
+        // Calculate the total number of students for each faculty
+        $facultyTotals = $data->groupBy('faculty_name')->map(function ($facultyGroup) {
+            return $facultyGroup->sum('total');
+        });
+        // Get the current date and time
+        $currentDateTime = Carbon::now()->toDateTimeString();
 
-return view('admin.statistics.index', compact('statistics', 'totals', 'facultyTotals','currentDateTime'));
-
-}
-
-
+        return view('admin.statistics.index', compact('statistics', 'totals', 'facultyTotals', 'currentDateTime'));
+    }
 }

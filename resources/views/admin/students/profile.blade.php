@@ -13,21 +13,21 @@
 		<div class="row">
 			<div class="col-md-6 ">
 				<label for="nom_ar" class="form-label">اللقب</label>
-                <input type="text" class="form-control" id="nom_ar" value="{{$student->nom_ar}}"  required="" placeholder="اللقب..." oninput="this.className = ''" name="nom_ar">
+                <input type="text" class="form-control" id="nom_ar" value="{{$student->nom_ar}}"  required placeholder="اللقب..."  name="nom_ar">
 				<div class="valid-feedback">
 				  Looks good!
 				</div>
 			 </div>
 			<div class="col-md-6 ">
 				<label for="prenom_ar" class="form-label">الاسم</label>
-                 <input type="text" class="form-control" id="prenom_ar" value="{{$student->prenom_ar}}" required="" placeholder="الاسم..." oninput="this.className = ''" name="prenom_ar">
+                 <input type="text" class="form-control" id="prenom_ar" value="{{$student->prenom_ar}}" required placeholder="الاسم..."  name="prenom_ar">
 				<div class="valid-feedback">
 				  Looks good!
 				</div>
 			</div>
 			  <div class="col-md-6 ">
 				<label for="nom_fr" class="form-label">Nom(fr)</label>
-				<input type="text" class="form-control" id="nom_fr" value="{{$student->nom_fr}}" required=""  oninput="this.className = ''" name="nom_fr">
+				<input type="text" class="form-control" id="nom_fr" value="{{$student->user->name}}" required  readonly name="nom_fr">
 				
 				<div class="valid-feedback">
 				  Looks good!
@@ -36,7 +36,7 @@
 			  <div class="col-md-6 ">
 				<label for="prenom_fr" class="form-label">Prenom(fr)</label>
 				
-				<input type="text" class="form-control" id="prenom_fr" value="{{$student->prenom_fr}}" required="" oninput="this.className = ''" name="prenom_fr">
+				<input type="text" class="form-control" id="prenom_fr" value="{{$student->user->lastname}}" required readonly name="prenom_fr">
 				<div class="valid-feedback">
 				  Looks good!
 				</div>
@@ -44,7 +44,7 @@
 			  <div class="col-md-6">
 				<label for="date_nais" class="form-label text-md-end">{{__('translation.date_nais')}}</label>
 				
-				<input type="date" class="form-control  @error('date_nais') is-invalid @enderror" id="date_nais" value="{{$student->date_nais}}"  required="" placeholder="00/00/0000" oninput="this.className = ''" name="date_nais">
+				<input type="date" class="form-control  @error('date_nais') is-invalid @enderror" id="date_nais" value="{{$student->user->birthday}}"  required readonly name="date_nais">
 				
         @error('date_nais')
         <span class="invalid-feedback" role="alert">

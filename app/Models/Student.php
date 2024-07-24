@@ -69,6 +69,10 @@ class Student extends Model
     {
         return $this->hasMany(SpecialityStudent::class,'student_id','id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id','id');
+    }
    /* public function speciality()
     {
         return $this->hasOne(Speciality::class,'student_id','id');
