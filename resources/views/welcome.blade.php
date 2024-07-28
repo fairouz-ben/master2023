@@ -125,6 +125,13 @@
    <b>{{__('translation.Inscription')}}</b>
    <p><a class="btn btn-secondary" href="{{ url('create_account/sciences') }}"> {{__('translation.Create an account')}} &raquo;</a></p>
  </div><!-- /.col-lg-4 -->
+ <div class="col-lg-4">
+  <img src="{{asset('facpharm.png')}}" class="bd-placeholder-img rounded-circle img-fluid"  width="200" height="200" alt="fac SI">
+ <h2>كلية الصيدلة</h2>
+ <p>Faculté  de Pharmacie </p>
+ <b>{{__('translation.Inscription')}}</b>
+ <p><a class="btn btn-secondary" href="{{ url('create_account/pharmacie') }}"> {{__('translation.Create an account')}} &raquo;</a></p>
+</div>
   </div><!-- /.row -->
       <!-- Three columns of text below the carousel -->
       <hr class="featurette-divider">

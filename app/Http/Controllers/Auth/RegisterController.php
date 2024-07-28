@@ -71,6 +71,9 @@ class RegisterController extends Controller
                 case 'sciences':
                     $fac_id=5;
                     break;
+                case 'pharmacie':
+                    $fac_id=4;
+                    break;
                 default:
                 return back()->with('error', trans('pagination.url_error'));
             }

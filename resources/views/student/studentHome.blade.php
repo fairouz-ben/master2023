@@ -51,10 +51,10 @@
 
                                 @include('student.recours')
                             @else
-                                <td>{{ __('Orientation') }}:</td>
-                                <td> -
+                                <p>{{ __('Orientation') }}:</p>
+                                <p> -
                                     {{ $speciality_name[0]['title'] }}
-                                </td>
+                                </p>
                             @endif
 
                             <div class="row mt-3">
