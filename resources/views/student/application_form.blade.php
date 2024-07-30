@@ -49,8 +49,8 @@
                     </div>
                     <div class="col-md-6 ">
                         <label for="nom_fr" class="form-label">Nom(fr)</label>
-                        <input type="text" class="form-control" id="nom_fr" value="{{ $user->name }}" required readonly
-                             name="nom_fr">
+                        <input type="text" class="form-control" id="nom_fr" value="{{ $user->name }}" required
+                            readonly name="nom_fr">
 
                         <div class="valid-feedback">
                             Looks good!
@@ -59,8 +59,8 @@
                     <div class="col-md-6 ">
                         <label for="prenom_fr" class="form-label">Prenom(fr)</label>
 
-                        <input type="text" class="form-control" id="prenom_fr" value="{{ $user->lastname }}"
-                            required readonly name="prenom_fr">
+                        <input type="text" class="form-control" id="prenom_fr" value="{{ $user->lastname }}" required
+                            readonly name="prenom_fr">
                         <div class="valid-feedback">
                             Looks good!
                         </div>
@@ -68,8 +68,8 @@
                     <div class="col-md-6">
                         <label for="date_nais" class="form-label text-md-end">{{ __('translation.date_nais') }}</label>
 
-                        <input type="date" class="form-control" id="date_nais" value="{{ $user->birthday }}"
-                            required readonly name="date_nais">
+                        <input type="date" class="form-control" id="date_nais" value="{{ $user->birthday }}" required
+                            readonly name="date_nais">
 
                         <div class="valid-feedback">
                             Looks good!
@@ -321,6 +321,9 @@
                         <li> - شهادة البكالوريا</li>
                         <li>- شهادة الليسانس/ الدبلوم</li>
                         <li>- كشوف النقاط</li>
+                        <li>- شهادة حسن السيرة</li>
+                        <li>– إثبات الاقامة</li>
+                        <li>– شهادة ميلاد حديثة</li>
                     </ul>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>

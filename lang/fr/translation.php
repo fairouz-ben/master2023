@@ -8,7 +8,7 @@ return[
 'adminpagetitle'=>'Administration',
 'listinscrit'=>'la liste des inscrits',
 'english' => 'Anglais',
-'french' => 'Français',
+'french' => 'Latin',
 'Inscription'=>'Inscription',
 'Create an account'=>'Création de compte',
 'Register'=>'Enregistrer',

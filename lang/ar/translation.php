@@ -8,7 +8,7 @@ return[
 'adminpagetitle'=>'إدارة التطبيق',
 'listinscrit'=>'قائمة المترشحين',
 'english'=>'الإنجليزية',
-'french' => 'الفرنسية',
+'french' => 'الاتينية',
 'Inscription'=>'التسجيل',
 'Create an account'=>'إنشاء حساب',
 'Register'=>'التسجيل',

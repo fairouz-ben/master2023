@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('speciality_students', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_id');
-            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->unsignedBigInteger('speciality_id');
             $table->foreign('speciality_id')->references('id')->on('specialities');
             $table->integer('order');
